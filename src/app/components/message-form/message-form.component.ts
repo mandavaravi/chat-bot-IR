@@ -43,39 +43,6 @@ export class MessageFormComponent implements OnInit {
     chip.toggleSelected();
   }
 
-  // public formatHour(input) {
-  //   if (input > 12) {
-  //     return input - 12;
-  //   }
-  //   return input;
-  // }
-
-  // public formatData(input) {
-  //   if (input > 9) {
-  //     return input;
-  //   } else return `0${input}`;
-  // }
-
-  // public format24Hour() {
-  //   const date = new Date();
-  //   const format = {
-  //     dd: this.formatData(date.getDate()),
-  //     mm: this.formatData(date.getMonth() + 1),
-  //     yyyy: date.getFullYear(),
-  //     HH: this.formatData(date.getHours()),
-  //     hh: this.formatData(this.formatHour(date.getHours())),
-  //     MM: this.formatData(date.getMinutes()),
-  //     SS: this.formatData(date.getSeconds()),
-  //   };
-
-  //   return this.dateToString(format);
-  // }
-
-  // public dateToString({ dd, mm, yyyy, hh, MM, SS }) {
-  //   var sentAt = `${mm}/${dd} - ${hh}:${MM}`;
-  //   return sentAt;
-  // }
-
   public sendMessage(): void {
     if (this.message.content && this.message.content.trim() != '') {
       this.message.timestamp = this.dialogFlowService.format24Hour(); //new Date();

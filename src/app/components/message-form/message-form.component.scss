@@ -27,9 +27,16 @@
     height: fit-content;
   }
 
+  .mat-chip {
+    border-radius: 5px !important;
+  }
+
   .mat-chip-category {
     background-color: #e6e6e6 !important;
   }
 
-  // .mat-chip-selected
+  .mat-chip-selected {
+    background-color: #228fee !important;
+    color: white;
+  }
 }
