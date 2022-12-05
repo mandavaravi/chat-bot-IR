@@ -4,16 +4,14 @@ import { Message } from '../../models';
 @Component({
   selector: 'message-item',
   templateUrl: './message-item.component.html',
-  styleUrls: ['./message-item.component.scss']
+  styleUrls: ['./message-item.component.scss'],
 })
 export class MessageItemComponent implements OnInit {
-
   @Input('message')
   private message: Message;
+  public isSentByBot: boolean = true;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

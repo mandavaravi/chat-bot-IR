@@ -22,6 +22,9 @@ export class MessageFormComponent implements OnInit {
 
   public sendMessage(): void {
     this.message.timestamp = new Date();
+    console. log(
+      this.message.timestamp.toLocaleString('en-US', { hour: 'numeric', hour12: true })
+      );
     this.messages.push(this.message);
 
     this.dialogFlowService.getResponse(this.message.content).subscribe(res => {
