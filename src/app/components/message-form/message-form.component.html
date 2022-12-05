@@ -1,11 +1,64 @@
 <div class="chatcontrol">
-  <input
-    type="text"
-    class="form-control chatinput"
-    (keyup.enter)="sendMessage()"
-    [(ngModel)]="message.content"
-  />
-  <button class="btn btn-primary sendbtn" (click)="sendMessage()">
-    <mat-icon>send</mat-icon>
-  </button>
+  <div class="row" style="width: inherit; margin: 0 !important;">
+    <input
+      mat-input
+      type="text"
+      class="form-control chatinput"
+      (keyup.enter)="sendMessage()"
+      [(ngModel)]="message.content"
+    />
+    <button mat-button class="btn btn-primary sendbtn" (click)="sendMessage()">
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+
+  <div class="row" style="width: inherit; margin: 0 !important;">
+    <mat-form-field>
+      <mat-label>Topics</mat-label>
+      <mat-select [formControl]="topicControl" multiple>
+        <mat-select-trigger>
+          <mat-chip-list>
+            <mat-chip
+              *ngFor="let topic of topicControl.value"
+              [removable]="true"
+              (removed)="onTopicRemoved(topic)"
+            >
+              {{ topic }}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+          </mat-chip-list>
+        </mat-select-trigger>
+
+        <mat-option *ngFor="let topic of topicList" [value]="topic">{{
+          topic
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <br />
+    {{ topicControl.value | json }}
+  </div>
 </div>
+<!-- 
+
+<mat-form-field>
+  <mat-label>Topics</mat-label>
+  <mat-select [formControl]="topicControl" multiple>
+
+    <mat-select-trigger>
+      <mat-chip-list>
+        <mat-chip *ngFor="let topic of topicControl.value"
+          [removable]="true" (removed)="onToppingRemoved(topic)">
+          {{ topic }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </mat-select-trigger>
+
+    <mat-option *ngFor="let topic of topicList" [value]="topic">{{topic}}</mat-option>
+
+  </mat-select>
+</mat-form-field>
+
+<br/>
+{{ topicControl.value | json }} -->

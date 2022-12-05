@@ -5,22 +5,24 @@
   </div>
   <div class="timeform">
     <i class="fa fa-clock-o" aria-hidden="true"></i>
-    <span class="timestamp"
-      >at {{ message.timestamp | date: 'dd/MM/yyyy' }}</span
-    >
+    <span class="timestamp">at {{ message.timestamp }}</span>
+    <!-- | date: 'dd/MM/yyyy'  -->
   </div>
 </li>
 
-
-<li class="list-group-item user-message" style="justify-content: end">
+<li
+  class="list-group-item user-message"
+  style="justify-content: end"
+  *ngIf="!isSentByBot"
+>
+  >
   <div class="message">
     {{ message.content }}
   </div>
   <img [src]="message.avatar" class="avatar-right" />
   <div class="timeform" style="text-align: end">
     <i class="fa fa-clock-o" aria-hidden="true"></i>
-    <span class="timestamp"
-      >at {{ message.timestamp | date: 'dd/MM/yyyy' }}</span
-    >
+    <span class="timestamp">at {{ message.timestamp }}</span>
+    <!--  | date: 'dd/MM/yyyy'  -->
   </div>
 </li>
