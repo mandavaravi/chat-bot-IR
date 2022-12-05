@@ -1,0 +1,11 @@
+<div class="chatcontrol">
+  <input
+    type="text"
+    class="form-control chatinput"
+    (keyup.enter)="sendMessage()"
+    [(ngModel)]="message.content"
+  />
+  <button class="btn btn-primary sendbtn" (click)="sendMessage()">
+    <mat-icon>send</mat-icon>Send
+  </button>
+</div>
