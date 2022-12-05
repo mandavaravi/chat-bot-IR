@@ -1,5 +1,24 @@
 <div class="chatcontrol">
   <div class="row" style="width: inherit; margin: 0 !important;">
+    <mat-chip-list selectable multiple>
+      <mat-chip
+        color="accent"
+        #c="matChip"
+        *ngFor="let option of topics"
+        [value]="option"
+        (click)="toggleSelection(c)"
+        class="mat-chip-category"
+      >
+        <mat-icon *ngIf="c.selected">check</mat-icon>
+        {{ option }}
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+
+  <div
+    class="row"
+    style="width: inherit; margin: 0 !important; margin-top: 10px !important; margin-bottom: 10px !important;"
+  >
     <input
       mat-input
       type="text"
@@ -11,54 +30,4 @@
       <mat-icon>send</mat-icon>
     </button>
   </div>
-
-  <div class="row" style="width: inherit; margin: 0 !important;">
-    <mat-form-field>
-      <mat-label>Topics</mat-label>
-      <mat-select [formControl]="topicControl" multiple>
-        <mat-select-trigger>
-          <mat-chip-list>
-            <mat-chip
-              *ngFor="let topic of topicControl.value"
-              [removable]="true"
-              (removed)="onTopicRemoved(topic)"
-            >
-              {{ topic }}
-              <mat-icon matChipRemove>cancel</mat-icon>
-            </mat-chip>
-          </mat-chip-list>
-        </mat-select-trigger>
-
-        <mat-option *ngFor="let topic of topicList" [value]="topic">{{
-          topic
-        }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <br />
-    {{ topicControl.value | json }}
-  </div>
 </div>
-<!-- 
-
-<mat-form-field>
-  <mat-label>Topics</mat-label>
-  <mat-select [formControl]="topicControl" multiple>
-
-    <mat-select-trigger>
-      <mat-chip-list>
-        <mat-chip *ngFor="let topic of topicControl.value"
-          [removable]="true" (removed)="onToppingRemoved(topic)">
-          {{ topic }}
-          <mat-icon matChipRemove>cancel</mat-icon>
-        </mat-chip>
-      </mat-chip-list>
-    </mat-select-trigger>
-
-    <mat-option *ngFor="let topic of topicList" [value]="topic">{{topic}}</mat-option>
-
-  </mat-select>
-</mat-form-field>
-
-<br/>
-{{ topicControl.value | json }} -->

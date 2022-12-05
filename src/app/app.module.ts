@@ -55,6 +55,8 @@ import {
 } from './components';
 // import { MatButtonModule } from '@angular/material/button';
 // import { MatIconModule } from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,12 +65,11 @@ import {
     MessageItemComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
     HttpModule,
     MatIconModule,
-    MatButtonModule,
     // A11yModule,
     // ClipboardModule,
     CdkStepperModule,
@@ -80,12 +81,10 @@ import {
     // MatBottomSheetModule,
     MatButtonToggleModule,
     MatCardModule,
-    MatCheckboxModule,
     MatChipsModule,
     MatStepperModule,
     MatDatepickerModule,
     MatDialogModule,
-    MatDividerModule,
     MatExpansionModule,
     MatGridListModule,
     MatInputModule,
@@ -105,11 +104,14 @@ import {
     MatSortModule,
     MatTableModule,
     MatTabsModule,
-    MatToolbarModule,
     MatTooltipModule,
     // MatTreeModule,
     PortalModule,
-    // ScrollingModule,
+    MatToolbarModule,
+    MatDividerModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatCheckboxModule,
   ],
   exports: [
     MatIconModule,

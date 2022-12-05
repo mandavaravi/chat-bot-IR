@@ -22,4 +22,14 @@
   mat-form-field {
     width: 100%;
   }
+
+  .mat-select-trigger {
+    height: fit-content;
+  }
+
+  .mat-chip-category {
+    background-color: #e6e6e6 !important;
+  }
+
+  // .mat-chip-selected
 }
