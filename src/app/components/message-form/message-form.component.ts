@@ -61,7 +61,7 @@ export class MessageFormComponent implements OnInit {
         res.push(key);
       }
     }
-    return res;
+    return res; 
   }
 
   public sendMessage(): void {
