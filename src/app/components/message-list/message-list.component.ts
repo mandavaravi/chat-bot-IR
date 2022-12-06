@@ -28,17 +28,6 @@ export class MessageListComponent implements OnInit, AfterViewInit {
 
   constructor(private dialogFlowService: DialogflowService) {
     this.messages = this.dialogFlowService.getLocalMessages();
-    // alert(
-    //   'app comp   -  ' +
-    //     JSON.stringify(this.dialogFlowService.getLocalMessages())
-    // );
-    // this._serviceSubscription = this.dialogFlowService.onNewMsg.subscribe({
-    //   next: (event: any) => {
-    //     console.log(`Received message ${event.messages}`);
-    //     this.messages = event.messages;
-    //     // this.cleanup();
-    //   },
-    // });
     console.clear();
     console.log(this.messages);
   }
@@ -50,19 +39,18 @@ export class MessageListComponent implements OnInit, AfterViewInit {
   public _serviceSubscription;
   ngAfterViewInit() {
     this.chatItems.changes.subscribe((elements) => {
-      // console.log('messsage list changed: ' + this.messages.length);
+      console.log('messsage list changed: ' + this.messages.length);
       this.scrollToBottom();
     });
 
     this._serviceSubscription = this.dialogFlowService.onNewMsg.subscribe({
       next: (event: any) => {
-        console.log(`Received message ${event.messages}`);
         this.messages = event.messages;
+        console.log('Received message ' + JSON.stringify(this.messages));
         // this.cleanup();
       },
     });
-    alert('-----------------------------------------');
-    // this.messages = this.dialogFlowService.getLocalMessages();
+    alert('-----------------------------------------\n');
   }
 
   private scrollToBottom(): void {

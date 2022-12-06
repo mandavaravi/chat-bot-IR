@@ -7,7 +7,7 @@ export class Message {
   constructor(
     content: string,
     avatar: string,
-    timestamp?: string,
+    timestamp: string,
     isBot: boolean
   ) {
     this.content = content;

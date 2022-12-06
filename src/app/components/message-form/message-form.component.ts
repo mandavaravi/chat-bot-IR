@@ -38,10 +38,12 @@ export class MessageFormComponent implements OnInit {
     Environment: false,
     ChitChat: false,
   };
+
+  currContent = '';
   constructor(private dialogFlowService: DialogflowService) {
     // alert('----------', JSON.stringify(this.messages));
     this.messages = this.dialogFlowService.getLocalMessages();
-    // alert('+++++++++++++', JSON.stringify(this.messages));
+    alert('MSG FORM 44' + JSON.stringify(this.messages));
   }
 
   ngOnInit() {}
@@ -65,8 +67,7 @@ export class MessageFormComponent implements OnInit {
   public sendMessage(): void {
     this.messages = this.dialogFlowService.getLocalMessages();
     if (this.message.content && this.message.content.trim() != '') {
-      alert('%%%%%' + JSON.stringify(this.message));
-      // // alert(JSON.stringify(this.message));
+      // alert('%%%%%' + JSON.stringify(this.message));
       this.message.timestamp = this.dialogFlowService.format24Hour(); //new Date();
       // this.messages.push(this.message);
       // // alert(JSON.stringify(this.messages));
@@ -92,8 +93,8 @@ export class MessageFormComponent implements OnInit {
       this.dialogFlowService.updateLocalMessages(this.message);
 
       alert(
-        'mess form  - ',
-        JSON.stringify(this.dialogFlowService.getLocalMessages())
+        'mess form  - ' +
+          JSON.stringify(this.dialogFlowService.getLocalMessages())
       );
     }
   }
