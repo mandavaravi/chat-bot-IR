@@ -3,11 +3,13 @@ import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { environment } from '../.././environments/environment';
+import { Message } from '@app/models';
 
 @Injectable()
 export class DialogflowService {
   private baseURL: string = 'https://api.dialogflow.com/v1/query?v=20150910';
   private token: string = environment.token;
+  private messagesSer: Message[] = [];
 
   constructor(private http: Http) {}
 
@@ -58,5 +60,13 @@ export class DialogflowService {
   public dateToString({ dd, mm, yyyy, hh, MM, SS }) {
     var sentAt = `${mm}/${dd} - ${hh}:${MM}`;
     return sentAt;
+  }
+
+  public updateLocalMessages(newMsg) {
+    this.messagesSer.push(newMsg);
+  }
+
+  public getLocalMessages() {
+    return this.messagesSer;
   }
 }

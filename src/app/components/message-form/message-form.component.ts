@@ -10,12 +10,17 @@ import { MatChip } from '@angular/material/chips';
   styleUrls: ['./message-form.component.scss'],
 })
 export class MessageFormComponent implements OnInit {
-  @Input() options: string[] = [];
+  options: string[] = [];
 
-  @Input('message')
-  private message: Message;
+  // @Input('message')
+  private message: Message = new Message(
+    '',
+    'assets/images/user.png',
+    '',
+    false
+  );
 
-  @Input('messages')
+  // @Input('messages')
   private messages: Message[];
 
   topics: string[] = [
@@ -33,7 +38,10 @@ export class MessageFormComponent implements OnInit {
     Environment: false,
     ChitChat: false,
   };
-  constructor(private dialogFlowService: DialogflowService) {}
+  constructor(private dialogFlowService: DialogflowService) {
+    // alert(JSON.stringyfy(this.message));
+    this.messages = this.dialogFlowService.getLocalMessages();
+  }
 
   ngOnInit() {}
 
@@ -41,7 +49,6 @@ export class MessageFormComponent implements OnInit {
     this.selectedTopics[chip.value] = !this.selectedTopics[chip.value];
     console.log(this.selectedTopics);
     chip.toggleSelected();
-    // this.getSelectedTopics();
   }
 
   getSelectedTopics() {
@@ -51,18 +58,17 @@ export class MessageFormComponent implements OnInit {
         res.push(key);
       }
     }
-
-    alert(res);
     return res;
   }
 
   public sendMessage(): void {
     if (this.message.content && this.message.content.trim() != '') {
+      alert(JSON.stringify(this.message));
       this.message.timestamp = this.dialogFlowService.format24Hour(); //new Date();
       this.messages.push(this.message);
-
+      alert(JSON.stringify(this.messages));
       this.dialogFlowService
-        .getResponse(this.message.content, this.getSelectedTopics)
+        .getResponse(this.message.content, this.getSelectedTopics())
         .subscribe((res) => {
           this.messages.push(
             new Message(
@@ -74,7 +80,12 @@ export class MessageFormComponent implements OnInit {
           );
         });
 
-      this.message = new Message('', '../../../assets/images/user.png');
+      this.message = new Message(
+        '',
+        '../../../assets/images/user.png',
+        '',
+        false
+      );
     }
   }
 }

@@ -18,13 +18,20 @@ export class AppComponent {
       this.dialogFlowService.format24Hour(),
       false
     );
-    this.messages = [
-      new Message(
-        'Welcome to chatbot universe',
-        'assets/images/bot.png',
-        this.dialogFlowService.format24Hour(),
-        true
-      ),
-    ];
+    let firstBotMsg = new Message(
+      'Welcome to chatbot universe',
+      'assets/images/bot.png',
+      this.dialogFlowService.format24Hour(),
+      true
+    );
+    this.dialogFlowService.updateLocalMessages(firstBotMsg);
+    // this.messages = [
+    //   new Message(
+    //     'Welcome to chatbot universe',
+    //     'assets/images/bot.png',
+    //     this.dialogFlowService.format24Hour(),
+    //     true
+    //   ),
+    // ];
   }
 }

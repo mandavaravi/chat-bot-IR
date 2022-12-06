@@ -2,13 +2,13 @@ export class Message {
   content: string;
   timestamp: string;
   avatar: string;
-  isBot?: boolean;
+  isBot: boolean;
 
   constructor(
     content: string,
     avatar: string,
     timestamp?: string,
-    isBot?: boolean
+    isBot: boolean
   ) {
     this.content = content;
     this.timestamp = timestamp;

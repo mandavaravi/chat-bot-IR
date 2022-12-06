@@ -1,4 +1,4 @@
-<li class="list-group-item" *ngIf="isSentByBot">
+<li class="list-group-item" *ngIf="message.isBot">
   <img [src]="message.avatar" class="avatar" />
   <div class="message">
     {{ message.content }}
