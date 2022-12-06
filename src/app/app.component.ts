@@ -12,12 +12,18 @@ export class AppComponent {
   public messages: Message[];
 
   constructor(private dialogFlowService: DialogflowService) {
-    this.message = new Message('', 'assets/images/user.png');
+    this.message = new Message(
+      '',
+      'assets/images/user.png',
+      this.dialogFlowService.format24Hour(),
+      false
+    );
     this.messages = [
       new Message(
         'Welcome to chatbot universe',
         'assets/images/bot.png',
-        this.dialogFlowService.format24Hour()
+        this.dialogFlowService.format24Hour(),
+        true
       ),
     ];
   }

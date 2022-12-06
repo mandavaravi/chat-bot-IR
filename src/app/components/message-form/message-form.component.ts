@@ -41,6 +41,19 @@ export class MessageFormComponent implements OnInit {
     this.selectedTopics[chip.value] = !this.selectedTopics[chip.value];
     console.log(this.selectedTopics);
     chip.toggleSelected();
+    // this.getSelectedTopics();
+  }
+
+  getSelectedTopics() {
+    let res = [];
+    for (let key in this.selectedTopics) {
+      if (this.selectedTopics[key]) {
+        res.push(key);
+      }
+    }
+
+    alert(res);
+    return res;
   }
 
   public sendMessage(): void {
@@ -49,13 +62,14 @@ export class MessageFormComponent implements OnInit {
       this.messages.push(this.message);
 
       this.dialogFlowService
-        .getResponse(this.message.content)
+        .getResponse(this.message.content, this.getSelectedTopics)
         .subscribe((res) => {
           this.messages.push(
             new Message(
               res.result.fulfillment.speech,
               '../../../assets/images/bot.png',
-              res.timestamp
+              this.dialogFlowService.format24Hour(),
+              true
             )
           );
         });

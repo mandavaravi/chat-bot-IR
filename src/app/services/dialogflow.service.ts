@@ -6,32 +6,27 @@ import { environment } from '../.././environments/environment';
 
 @Injectable()
 export class DialogflowService {
-
-  private baseURL: string = "https://api.dialogflow.com/v1/query?v=20150910";
+  private baseURL: string = 'https://api.dialogflow.com/v1/query?v=20150910';
   private token: string = environment.token;
 
-  constructor(private http: Http){}
+  constructor(private http: Http) {}
 
-  public getResponse(query: string){
+  public getResponse(query: string, topicsList) {
     let data = {
-      query : query,
-      lang: 'en',
-      sessionId: '12345'
-    }
-    return this.http
-      .post(`${this.baseURL}`, data, {headers: this.getHeaders()})
-      .map(res => {
-        return res.json()
-      })
+      query: query,
+      topics: topicsList,
+    };
+    return this.http.post(`${this.baseURL}`, data).map((res) => {
+      return res.json();
+    });
   }
 
-  public getHeaders(){
+  public getHeaders() {
     let headers = new Headers();
     headers.append('Authorization', `Bearer ${this.token}`);
     return headers;
   }
 
-  
   public formatHour(input) {
     if (input > 12) {
       return input - 12;
@@ -64,5 +59,4 @@ export class DialogflowService {
     var sentAt = `${mm}/${dd} - ${hh}:${MM}`;
     return sentAt;
   }
-
 }
