@@ -61,27 +61,30 @@ export class MessageFormComponent implements OnInit {
         res.push(key);
       }
     }
-    return res; 
+    return res;
   }
 
   public sendMessage(): void {
     this.messages = this.dialogFlowService.getLocalMessages();
     if (this.message.content && this.message.content.trim() != '') {
       this.message.timestamp = this.dialogFlowService.format24Hour(); //new Date();
+      this.message.content = currContent;
       // this.messages.push(this.message);
       // // alert(JSON.stringify(this.messages));
-      // this.dialogFlowService
-      //   .getResponse(this.message.content, this.getSelectedTopics())
-      //   .subscribe((res) => {
-      //     this.messages.push(
-      //       new Message(
-      //         res.result.fulfillment.speech,
-      //         '../../../assets/images/bot.png',
-      //         this.dialogFlowService.format24Hour(),
-      //         true
-      //       )
-      //     );
-      //   });
+      this.dialogFlowService
+        .getResponse(this.message.content, this.getSelectedTopics())
+        .subscribe((res) => {
+          // this.messages.push(
+          //   new Message(
+          //     res.result.fulfillment.speech,
+          //     '../../../assets/images/bot.png',
+          //     this.dialogFlowService.format24Hour(),
+          //     true
+          //   )
+          // );
+          alert(JSON.stringify(res));
+          this.currContent = '';
+        });
 
       // this.message = new Message(
       //   '',
