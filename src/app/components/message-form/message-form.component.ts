@@ -68,7 +68,7 @@ export class MessageFormComponent implements OnInit {
     this.messages = this.dialogFlowService.getLocalMessages();
     if (this.message.content && this.message.content.trim() != '') {
       this.message.timestamp = this.dialogFlowService.format24Hour(); //new Date();
-      this.message.content = currContent;
+      this.message.content = this.currContent;
       // this.messages.push(this.message);
       // // alert(JSON.stringify(this.messages));
       this.dialogFlowService
