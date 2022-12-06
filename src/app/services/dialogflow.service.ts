@@ -9,7 +9,7 @@ import { Message } from '@app/models';
 export class DialogflowService {
   private baseURL: string = 'https://api.dialogflow.com/v1/query?v=20150910';
   private token: string = environment.token;
-  private messagesSer: Message[] = [];
+  // private messagesSer: Message[] = [];
 
   constructor(private http: Http) {}
 
@@ -63,10 +63,13 @@ export class DialogflowService {
   }
 
   public updateLocalMessages(newMsg) {
-    this.messagesSer.push(newMsg);
+    let messagesSer: Message[] = JSON.parse(localStorage.getItem('msgsList'));
+    messagesSer.push(newMsg);
+    localStorage.setItem('msgsList', JSON.stringify(messagesSer));
   }
 
   public getLocalMessages() {
-    return this.messagesSer;
+    let messagesSer = JSON.parse(localStorage.getItem('msgsList'));
+    return messagesSer;
   }
 }

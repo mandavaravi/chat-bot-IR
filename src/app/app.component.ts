@@ -25,6 +25,7 @@ export class AppComponent {
       true
     );
     this.dialogFlowService.updateLocalMessages(firstBotMsg);
+    alert(this.dialogFlowService.getLocalMessages());
     // this.messages = [
     //   new Message(
     //     'Welcome to chatbot universe',
