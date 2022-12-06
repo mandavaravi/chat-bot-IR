@@ -12,6 +12,7 @@ export class AppComponent {
   public messages: Message[];
 
   constructor(private dialogFlowService: DialogflowService) {
+    localStorage.removeItem('msgsList');
     this.message = new Message(
       '',
       'assets/images/user.png',
@@ -25,7 +26,6 @@ export class AppComponent {
       true
     );
     this.dialogFlowService.updateLocalMessages(firstBotMsg);
-    alert(this.dialogFlowService.getLocalMessages());
     // this.messages = [
     //   new Message(
     //     'Welcome to chatbot universe',

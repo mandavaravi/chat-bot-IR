@@ -63,8 +63,10 @@ export class DialogflowService {
   }
 
   public updateLocalMessages(newMsg) {
-    let messagesSer: Message[] = JSON.parse(localStorage.getItem('msgsList'));
+    let messagesSer: Message[] = [JSON.parse(localStorage.getItem('msgsList'))];
+    // messagesSer.push(JSON.parse(localStorage.getItem('msgsList')));
     messagesSer.push(newMsg);
+    alert('dial ser  - ' + JSON.stringify(messagesSer));
     localStorage.setItem('msgsList', JSON.stringify(messagesSer));
   }
 
