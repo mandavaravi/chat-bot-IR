@@ -63,13 +63,12 @@ export class MessageFormComponent implements OnInit {
   }
 
   public sendMessage(): void {
-    // alert('%%%%%');
     this.messages = this.dialogFlowService.getLocalMessages();
     if (this.message.content && this.message.content.trim() != '') {
       alert('%%%%%' + JSON.stringify(this.message));
       // // alert(JSON.stringify(this.message));
-      // this.message.timestamp = this.dialogFlowService.format24Hour(); //new Date();
-      this.messages.push(this.message);
+      this.message.timestamp = this.dialogFlowService.format24Hour(); //new Date();
+      // this.messages.push(this.message);
       // // alert(JSON.stringify(this.messages));
       // this.dialogFlowService
       //   .getResponse(this.message.content, this.getSelectedTopics())
@@ -91,6 +90,11 @@ export class MessageFormComponent implements OnInit {
       //   false
       // );
       this.dialogFlowService.updateLocalMessages(this.message);
+
+      alert(
+        'mess form  - ',
+        JSON.stringify(this.dialogFlowService.getLocalMessages())
+      );
     }
   }
 }
