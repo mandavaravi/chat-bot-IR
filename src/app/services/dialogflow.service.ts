@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -69,11 +69,19 @@ export class DialogflowService {
     // messagesSer.push(JSON.parse(localStorage.getItem('msgsList')));
     messagesSer.push(newMsg);
     localStorage.setItem('msgsList', JSON.stringify(messagesSer));
-    alert('dial ser  - ' + localStorage.getItem('msgsList'));
+    this.doSomething(messagesSer);
+    // alert('dial ser  - ' + localStorage.getItem('msgsList'));
   }
 
   public getLocalMessages(): Message[] {
     let messagesSer = JSON.parse(localStorage.getItem('msgsList'));
     return messagesSer;
+  }
+
+  public onNewMsg: EventEmitter<any> = new EventEmitter();
+
+  public doSomething(messages) {
+    // do something, then...
+    this.onNewMsg.emit({ messages: messages });
   }
 }

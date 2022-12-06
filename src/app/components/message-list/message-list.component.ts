@@ -32,15 +32,28 @@ export class MessageListComponent implements OnInit, AfterViewInit {
     //   'app comp   -  ' +
     //     JSON.stringify(this.dialogFlowService.getLocalMessages())
     // );
+    this._serviceSubscription = this.dialogFlowService.onNewMsg.subscribe({
+      next: (event: any) => {
+        console.log(`Received message ${event.messages}`);
+        this.messages = event.messages;
+        // this.cleanup();
+      },
+    });
     console.clear();
     console.log(this.messages);
   }
 
+  private cleanup() {
+    this._serviceSubscription.unsubscribe();
+  }
+
+  public _serviceSubscription;
   ngAfterViewInit() {
     this.chatItems.changes.subscribe((elements) => {
       // console.log('messsage list changed: ' + this.messages.length);
       this.scrollToBottom();
     });
+
     alert('-----------------------------------------');
     this.messages = this.dialogFlowService.getLocalMessages();
   }
