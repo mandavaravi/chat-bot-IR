@@ -1,9 +1,9 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { environment } from '../.././environments/environment';
 import { Message } from '@app/models';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class DialogflowService {
@@ -11,7 +11,7 @@ export class DialogflowService {
   private token: string = environment.token;
   // private messagesSer: Message[] = [];
 
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
   public getResponse(query: string, topicsList) {
     let data = {
@@ -23,11 +23,11 @@ export class DialogflowService {
     });
   }
 
-  public getHeaders() {
-    let headers = new Headers();
-    headers.append('Authorization', `Bearer ${this.token}`);
-    return headers;
-  }
+  // public getHeaders() {
+  //   let headers = new Headers();
+  //   headers.append('Authorization', `Bearer ${this.token}`);
+  //   return headers;
+  // }
 
   public formatHour(input) {
     if (input > 12) {
@@ -66,11 +66,9 @@ export class DialogflowService {
     let messagesSer: Message[] = JSON.parse(localStorage.getItem('msgsList'))
       ? JSON.parse(localStorage.getItem('msgsList'))
       : [];
-    // messagesSer.push(JSON.parse(localStorage.getItem('msgsList')));
     messagesSer.push(newMsg);
     localStorage.setItem('msgsList', JSON.stringify(messagesSer));
     this.doSomething(messagesSer);
-    // alert('dial ser  - ' + localStorage.getItem('msgsList'));
   }
 
   public getLocalMessages(): Message[] {
