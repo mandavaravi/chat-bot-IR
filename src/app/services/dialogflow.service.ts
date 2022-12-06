@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class DialogflowService {
   // private baseURL: string = 'https://api.dialogflow.com/v1/query?v=20150910';
-  private baseURL: string = 'http://10.84.71.25:5000/';
+  private baseURL: string = 'http://10.84.71.25:5000/getMsg';
   // private token: string = environment.token;
   // private messagesSer: Message[] = [];
 

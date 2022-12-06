@@ -66,10 +66,14 @@ export class MessageFormComponent implements OnInit {
 
   public sendMessage(): void {
     this.messages = this.dialogFlowService.getLocalMessages();
-    if (this.message.content && this.message.content.trim() != '') {
+    if (this.currContent && this.currContent.trim() != '') {
+      alert(this.currContent);
       this.message.timestamp = this.dialogFlowService.format24Hour(); //new Date();
       this.message.content = this.currContent;
-      // this.messages.push(this.message);
+      this.currContent = '';
+      this.messages.push(this.message);
+      this.dialogFlowService.updateLocalMessages(this.message);
+
       // // alert(JSON.stringify(this.messages));
       this.dialogFlowService
         .getResponse(this.message.content, this.getSelectedTopics())
@@ -83,7 +87,6 @@ export class MessageFormComponent implements OnInit {
           //   )
           // );
           alert(JSON.stringify(res));
-          this.currContent = '';
         });
 
       // this.message = new Message(
@@ -92,12 +95,11 @@ export class MessageFormComponent implements OnInit {
       //   '',
       //   false
       // );
-      this.dialogFlowService.updateLocalMessages(this.message);
 
-      alert(
-        'mess form  - ' +
-          JSON.stringify(this.dialogFlowService.getLocalMessages())
-      );
+      // alert(
+      //   'mess form  - ' +
+      //     JSON.stringify(this.dialogFlowService.getLocalMessages())
+      // );
     }
   }
 }
