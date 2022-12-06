@@ -32,13 +32,13 @@ export class MessageListComponent implements OnInit, AfterViewInit {
     //   'app comp   -  ' +
     //     JSON.stringify(this.dialogFlowService.getLocalMessages())
     // );
-    this._serviceSubscription = this.dialogFlowService.onNewMsg.subscribe({
-      next: (event: any) => {
-        console.log(`Received message ${event.messages}`);
-        this.messages = event.messages;
-        // this.cleanup();
-      },
-    });
+    // this._serviceSubscription = this.dialogFlowService.onNewMsg.subscribe({
+    //   next: (event: any) => {
+    //     console.log(`Received message ${event.messages}`);
+    //     this.messages = event.messages;
+    //     // this.cleanup();
+    //   },
+    // });
     console.clear();
     console.log(this.messages);
   }
@@ -54,8 +54,15 @@ export class MessageListComponent implements OnInit, AfterViewInit {
       this.scrollToBottom();
     });
 
+    this._serviceSubscription = this.dialogFlowService.onNewMsg.subscribe({
+      next: (event: any) => {
+        console.log(`Received message ${event.messages}`);
+        this.messages = event.messages;
+        // this.cleanup();
+      },
+    });
     alert('-----------------------------------------');
-    this.messages = this.dialogFlowService.getLocalMessages();
+    // this.messages = this.dialogFlowService.getLocalMessages();
   }
 
   private scrollToBottom(): void {
