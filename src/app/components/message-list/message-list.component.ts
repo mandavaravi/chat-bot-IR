@@ -41,6 +41,8 @@ export class MessageListComponent implements OnInit, AfterViewInit {
       // console.log('messsage list changed: ' + this.messages.length);
       this.scrollToBottom();
     });
+    alert('-----------------------------------------');
+    this.messages = this.dialogFlowService.getLocalMessages();
   }
 
   private scrollToBottom(): void {

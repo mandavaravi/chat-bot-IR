@@ -63,30 +63,32 @@ export class MessageFormComponent implements OnInit {
   }
 
   public sendMessage(): void {
+    this.messages = this.dialogFlowService.getLocalMessages();
     if (this.message.content && this.message.content.trim() != '') {
-      // alert(JSON.stringify(this.message));
-      this.message.timestamp = this.dialogFlowService.format24Hour(); //new Date();
+      // // alert(JSON.stringify(this.message));
+      // this.message.timestamp = this.dialogFlowService.format24Hour(); //new Date();
       this.messages.push(this.message);
-      // alert(JSON.stringify(this.messages));
-      this.dialogFlowService
-        .getResponse(this.message.content, this.getSelectedTopics())
-        .subscribe((res) => {
-          this.messages.push(
-            new Message(
-              res.result.fulfillment.speech,
-              '../../../assets/images/bot.png',
-              this.dialogFlowService.format24Hour(),
-              true
-            )
-          );
-        });
+      // // alert(JSON.stringify(this.messages));
+      // this.dialogFlowService
+      //   .getResponse(this.message.content, this.getSelectedTopics())
+      //   .subscribe((res) => {
+      //     this.messages.push(
+      //       new Message(
+      //         res.result.fulfillment.speech,
+      //         '../../../assets/images/bot.png',
+      //         this.dialogFlowService.format24Hour(),
+      //         true
+      //       )
+      //     );
+      //   });
 
-      this.message = new Message(
-        '',
-        '../../../assets/images/user.png',
-        '',
-        false
-      );
+      // this.message = new Message(
+      //   '',
+      //   '../../../assets/images/user.png',
+      //   '',
+      //   false
+      // );
+      this.dialogFlowService.updateLocalMessages(this.messages);
     }
   }
 }

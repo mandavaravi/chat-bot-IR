@@ -26,6 +26,7 @@ export class AppComponent {
       true
     );
     this.dialogFlowService.updateLocalMessages(firstBotMsg);
+    this.messages = this.dialogFlowService.getLocalMessages();
     // this.messages = [
     //   new Message(
     //     'Welcome to chatbot universe',
@@ -34,5 +35,9 @@ export class AppComponent {
     //     true
     //   ),
     // ];
+  }
+
+  ngAfterViewInit() {
+    this.messages = this.dialogFlowService.getLocalMessages();
   }
 }
