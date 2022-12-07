@@ -41,9 +41,8 @@ export class MessageFormComponent implements OnInit {
 
   currContent = '';
   constructor(private dialogFlowService: DialogflowService) {
-    // alert('----------', JSON.stringify(this.messages));
     this.messages = this.dialogFlowService.getLocalMessages();
-    alert('MSG FORM 44' + JSON.stringify(this.messages));
+    // alert('MSG FORM 44' + JSON.stringify(this.messages));
   }
 
   ngOnInit() {}
@@ -67,7 +66,7 @@ export class MessageFormComponent implements OnInit {
   public sendMessage(): void {
     this.messages = this.dialogFlowService.getLocalMessages();
     if (this.currContent && this.currContent.trim() != '') {
-      alert(this.currContent);
+      // alert(this.currContent);
       this.message.timestamp = this.dialogFlowService.format24Hour(); //new Date();
       this.message.content = this.currContent;
       this.currContent = '';
@@ -75,9 +74,11 @@ export class MessageFormComponent implements OnInit {
       this.dialogFlowService.updateLocalMessages(this.message);
 
       // // alert(JSON.stringify(this.messages));
+      alert('before api');
       this.dialogFlowService
         .getResponse(this.message.content, this.getSelectedTopics())
         .subscribe((res) => {
+          alert('inside api');
           // this.messages.push(
           //   new Message(
           //     res.result.fulfillment.speech,
@@ -88,13 +89,7 @@ export class MessageFormComponent implements OnInit {
           // );
           alert(JSON.stringify(res));
         });
-
-      // this.message = new Message(
-      //   '',
-      //   '../../../assets/images/user.png',
-      //   '',
-      //   false
-      // );
+      alert('after api');
 
       // alert(
       //   'mess form  - ' +

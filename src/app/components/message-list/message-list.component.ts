@@ -50,7 +50,6 @@ export class MessageListComponent implements OnInit, AfterViewInit {
         // this.cleanup();
       },
     });
-    alert('-----------------------------------------\n');
   }
 
   private scrollToBottom(): void {
