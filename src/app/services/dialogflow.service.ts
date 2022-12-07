@@ -3,7 +3,8 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { environment } from '../.././environments/environment';
 import { Message } from '@app/models';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+// import { HttpHeaders} from '@angular/common/http';
 
 @Injectable()
 export class DialogflowService {
@@ -12,19 +13,27 @@ export class DialogflowService {
   // private token: string = environment.token;
   // private messagesSer: Message[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private https: HttpClient) {}
 
   public getResponse(query: string, topicsList) {
     let data = {
       query: query,
       topics: topicsList,
     };
+
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Access-Control-Allow-Headers', 'Content-Type')
+      .append('Access-Control-Allow-Methods', 'POST')
+      .append('Access-Control-Allow-Origin', '*');
+
     // return this.http.post(`${this.baseURL}`, data).map((res) => {
     //   return res.json();
     // });
     console.clear();
+    console.log('service :');
 
-    return this.http.post('http://192.168.1.59:5000/getMsg', data);
+    return this.https.post('http://192.168.1.59:5000/getMsg', data);
   }
 
   // public getHeaders() {
